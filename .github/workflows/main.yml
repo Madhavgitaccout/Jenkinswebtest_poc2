@@ -1,0 +1,26 @@
+name: Java Build and Test
+
+on:
+  push:
+    branches:
+      - master  # Change this to the branch you want to trigger the workflow on
+
+jobs:
+  build:
+    name: Build and Test
+    runs-on: ubuntu-latest  # You can change the runner as needed
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'  # You can change this to the desired Java version
+
+      - name: Build with Maven
+        run: mvn clean package  # Adjust the Maven goals as needed
+
+      - name: Run tests
+        run: mvn test  # Adjust the Maven goals for running tests
